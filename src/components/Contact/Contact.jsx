@@ -1,11 +1,11 @@
 import css from "../Contact/Contact.module.css"
-import { deleteContact } from "redux/contactSlice";
+// import { deleteContact } from "redux/contactSlice";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types"
 
 const Contact = ({contact}) => {
 const dispatch = useDispatch()
-const onDeleteContact  = () => {dispatch(deleteContact(contact.id))}
+const onDeleteContact  = () => {dispatch()}
 
 	return (
 	<li className={css.contact}>

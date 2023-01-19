@@ -1,7 +1,5 @@
-// import { createSlice, nanoid } from "@reduxjs/toolkit";
-import { createReducer, combineReducers, createAction } from "@reduxjs/toolkit";
-import * as actions from './actions'
-
+import { createSlice} from "@reduxjs/toolkit";
+import { fetchContacts, addContacts, deleteContacts } from "./operations";
 // const contactsInitialState = [
 // 	{ id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
 // { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
@@ -9,23 +7,28 @@ import * as actions from './actions'
 // { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
 // ];
 
-const entities = createReducer([], {
-	[actions.fetchContactsSuccess]: (_, action) => action.payload
-})
+const handlePending = state => {
+	state.isLoading = true;
+};
 
-const isLoading = createReducer(false, {
-	[actions.fetchContactsRequest]: () => true,
-	[actions.fetchContactsSuccess]: () => false,
-	[actions.fetchContactsError]: () => false,
-})
+const handleRejected = (state, action) => {
+	state.isLoading = false;
+	state.error = action.payoad;
+};
 
-const error = createReducer(null, {
-	[actions.fetchContactsError]: (_, action) => action.payload,
-	[actions.fetchContactsRequest]: () => null,
-})
-
-export default combineReducers({
-	entities,
-	isLoading,
-	error
+const contactsSlise = createSlice({
+	name: "contacts",
+	initialState: {
+		contacts: [],
+		isLoading: false,
+		error: null,
+	},
+	extraReducers: {
+		[fetchContacts.pending]: handlePending,
+	[fetchContacts.fulfilled]: (state, action) {
+		state.isLoading = false;
+		state.error = null;
+		state.contacts = action.payload;
+	},
+	}
 })

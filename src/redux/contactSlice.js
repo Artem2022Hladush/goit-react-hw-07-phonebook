@@ -25,10 +25,29 @@ const contactsSlise = createSlice({
 	},
 	extraReducers: {
 		[fetchContacts.pending]: handlePending,
-	[fetchContacts.fulfilled]: (state, action) {
+	[fetchContacts.fulfilled] (state, action) {
 		state.isLoading = false;
 		state.error = null;
 		state.contacts = action.payload;
 	},
-	}
-})
+
+[fetchContacts.rejected]: handleRejected,
+[addContacts.pending]: handlePending,
+[addContacts.fulfilled](state, action ) {
+	state.isLoading = false;
+	state.error = null;
+	state.contacts.push(action.payload);
+},
+
+[addContacts.rejected]: handleRejected,
+[deleteContacts.pending]: handlePending,
+[deleteContacts.fulfilled] (state, action) {
+	state.isLoading = false;
+	state.error = null;
+	const index = state.contacts.findIndex (contact => contact.id === action.payload.id);
+	state.contacts.splice(index, 1);
+}
+	},
+});
+
+export const contactsReduser = contactsSlise.reducer;

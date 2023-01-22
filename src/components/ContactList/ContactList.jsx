@@ -8,6 +8,7 @@ import {fetchContacts}from 'redux/operations'
 
 const ContactList = () => {
 const contacts= useSelector(getContacts);
+console.log(contacts)
 const filter = useSelector(getFilter);
 const dispatch = useDispatch();
 
@@ -23,10 +24,7 @@ dispatch(fetchContacts())
 
 return (
 	<ul className={css.contact__list}>{visibleContacts.map(contact => 
-	<Contact 
-	key={contact.id}
-		contact={contact}
-	/>
+	<Contact key={contact.id} contact={contact} />
 )}
 </ul>
 )

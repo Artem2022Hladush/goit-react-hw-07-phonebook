@@ -1,13 +1,13 @@
 import  {useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addContacts } from "redux/operations";
+import { addContact } from "redux/operations";
 import { getContacts } from "redux/selectors";
 import css from "../ContactEditor/ContactEditor.module.css"
 import Notiflix from 'notiflix';
 
 const ContactEditor=() => {
 const dispatch = useDispatch();
-const contact = useSelector(getContacts);
+const contacts = useSelector(getContacts);
 
 const [name, setName] = useState("");
 const [number, setNumber] = useState("");
@@ -36,7 +36,7 @@ const handleSubmit = e => {
 	e.preventDefault();
 	const form = e.target;
 
-	const isAdded = contact.some(
+	const isAdded = contacts.some(
       contact => contact.name.toLowerCase() === name.toLowerCase()
     );
     if (isAdded) {
@@ -45,7 +45,7 @@ const handleSubmit = e => {
     }
 
 	const object = {name: form.elements.name.value , number: form.elements.number.value};
-	dispatch(addContacts(object))
+	dispatch(addContact(object))
 	form.reset()
 	reset();
 }

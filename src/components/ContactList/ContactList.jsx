@@ -14,7 +14,7 @@ const dispatch = useDispatch();
 
 const filterNormal = filter.toLowerCase();
 
-const visibleContacts = contacts.filter(contact =>
+const visibleContacts = contacts.filter(contact => 
 	contact.name.toLowerCase().includes(filterNormal)
 );
 

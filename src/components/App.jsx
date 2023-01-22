@@ -4,7 +4,7 @@ import Filter from "./Filter/Filter";
 
 
 
-export function App() {
+const App= () => {
   // const [contacts, setContacts] = useState(() => {
   //   const savedContacts = window.localStorage.getItem('contacts');
   //   if(savedContacts !== null){
@@ -28,3 +28,5 @@ export function App() {
     </div>
   )
 };
+
+export default App;

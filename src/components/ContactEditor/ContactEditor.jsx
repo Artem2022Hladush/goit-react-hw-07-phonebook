@@ -1,6 +1,6 @@
 import  {useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addContact } from "redux/operations";
+import { addContacts } from "redux/operations";
 import { getContacts } from "redux/selectors";
 import css from "../ContactEditor/ContactEditor.module.css"
 import Notiflix from 'notiflix';
@@ -44,8 +44,8 @@ const handleSubmit = e => {
       return 1;
     }
 
-	const object = {name: form.elements.name.value , number: form.elements.number.value};
-	dispatch(addContact(object))
+	const object = {name: form.elements.name.value ,  phone: form.elements.number.value};
+	dispatch(addContacts(object))
 	form.reset()
 	reset();
 }

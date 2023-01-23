@@ -8,13 +8,12 @@ import {fetchContacts}from 'redux/operations'
 
 const ContactList = () => {
 const contacts= useSelector(getContacts);
-console.log(contacts)
 const filter = useSelector(getFilter);
 const dispatch = useDispatch();
 
 const filterNormal = filter.toLowerCase();
 
-const visibleContacts = contacts.filter(contact => 
+const visibleContacts = contacts.filter(contact =>
 	contact.name.toLowerCase().includes(filterNormal)
 );
 
